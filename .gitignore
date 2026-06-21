@@ -17,6 +17,7 @@ docs/.jekyll-cache/
 docs/.jekyll-metadata
 docs/vendor/
 docs/.bundle/
+docs/Gemfile.lock
 
 # Node (if any tooling lands later)
 node_modules/

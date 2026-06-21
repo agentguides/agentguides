@@ -1,0 +1,8 @@
+source "https://rubygems.org"
+
+# https://pages.github.com/versions/ — pins Jekyll + plugins to GitHub Pages' build env.
+# github-pages transitively bundles jekyll-remote-theme, jekyll-seo-tag, jekyll-sitemap.
+gem "github-pages", group: :jekyll_plugins
+
+# Windows / JRuby timezone data
+gem "tzinfo-data", platforms: [:mingw, :x64_mingw, :jruby]

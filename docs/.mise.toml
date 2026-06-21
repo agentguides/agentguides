@@ -1,0 +1,3 @@
+# Local tool versions for the docs site (Jekyll + just-the-docs).
+[tools]
+ruby = "3.3"
