@@ -7,12 +7,6 @@ description: A Skills-compatible specification for multi-step agent workflows �
 
 *An open, Skills-compatible specification for multi-step agent workflows. Agents and humans walk each guide; recorded walks refine the guidance over time.*
 
-## What are Agent Guides?
-
-Agent Guides are an open specification for *multi-step procedural workflows* — runbooks, incident response, migrations, onboarding — that agents and humans walk through together.
-
-A Guide is a directory containing a `SKILL.md`, a `GUIDE.md`, and one markdown file per step. Every Guide is a valid Skill: Skills-only harnesses see a useful self-describing artifact, and Guide-aware harnesses additionally execute the workflow step by step.
-
 ```text
 my-guide/
   SKILL.md          # discovery (Skill-spec compliant)
@@ -22,6 +16,12 @@ my-guide/
     020-execute.md
     030-verify.md
 ```
+
+## What are Agent Guides?
+
+Agent Guides are an open specification for *multi-step procedural workflows* — runbooks, incident response, migrations, onboarding — that agents and humans walk through together.
+
+A Guide is a directory containing a `SKILL.md`, a `GUIDE.md`, and one markdown file per step. Every Guide is a valid Skill: Skills-only harnesses see a useful self-describing artifact, and Guide-aware harnesses additionally execute the workflow step by step.
 
 A single end-to-end execution is called a *walk* — agents and humans stepping through the Guide together.
 
