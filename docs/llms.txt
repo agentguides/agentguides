@@ -7,7 +7,7 @@ sitemap: false
 
 > {{ site.description }}
 
-Agent Guides extend the Agent Skills format to multi-step procedures — runbooks, incident response, migrations, onboarding. Every Guide is a valid Skill, so any Skills-compatible client can discover it; Guide-aware clients additionally execute the workflow step by step and record an append-only event log of each walk.
+{{ site.data.llms.intro }}
 
 ## Docs
 {% assign docs = site.html_pages | where_exp: "p", "p.title" | where_exp: "p", "p.url != '/'" | sort: "nav_order" -%}
@@ -16,12 +16,13 @@ Agent Guides extend the Agent Skills format to multi-step procedures — runbook
 {% endfor %}
 
 ## Schemas
-JSON Schemas (Draft 2020-12) for the Guide format, versioned by spec major.minor:
+{{ site.data.llms.schemas_intro }}
 {% assign schemas = site.static_files | where_exp: "f", "f.path contains '/schemas/0.1/'" | sort: "name" -%}
 {% for f in schemas -%}
 - [{{ f.name }}]({{ f.path | absolute_url }})
 {% endfor %}
 
 ## Optional
-- [Source — spec, schemas, and canonical examples](https://github.com/agentguides/agentguides)
-- [Runtime — the `guide` CLI + MCP server](https://github.com/agentguides/runtime)
+{% for link in site.data.llms.optional -%}
+- [{{ link.title }}]({{ link.url }})
+{% endfor -%}

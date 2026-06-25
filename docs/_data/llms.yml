@@ -1,0 +1,17 @@
+# Content for /llms.txt. Edit the prose/links here — docs/llms.txt is layout only,
+# and the Docs/Schemas lists come from the pages + schemas automatically.
+# (Title + summary come from _config.yml: title + description.)
+
+intro: >-
+  Agent Guides extend the Agent Skills format to multi-step procedures — runbooks,
+  incident response, migrations, onboarding. Every Guide is a valid Skill, so any
+  Skills-compatible client can discover it; Guide-aware clients additionally execute
+  the workflow step by step and record an append-only event log of each walk.
+
+schemas_intro: "JSON Schemas (Draft 2020-12) for the Guide format, versioned by spec major.minor:"
+
+optional:
+  - title: "Source — spec, schemas, and canonical examples"
+    url: "https://github.com/agentguides/agentguides"
+  - title: "Runtime — the `guide` CLI + MCP server"
+    url: "https://github.com/agentguides/runtime"
