@@ -20,7 +20,7 @@ const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, 
 
 function fill(svg, extra = {}) {
   const map = { BASE: c.base, SURFACE: c.surface, BORDER: c.border, TEXT: c.text,
-    MUTED: c.muted, ACCENT: c.accent, SANS: f.sans, MONO: f.mono, ...extra };
+    MUTED: c.muted, ACCENT: c.accent, DISPLAY: f.display, MONO: f.mono, ...extra };
   return svg.replace(/\{\{(\w+)\}\}/g, (_, k) => (k in map ? map[k] : `{{${k}}}`));
 }
 function rsvg(svg, args, out) {
@@ -44,15 +44,19 @@ function wrap(text, fontSize, maxWidth, maxLines) {
 const HEAD_X = 90, HEAD_Y = 300, LH = 78;
 const ogTpl = tpl('og.svg');
 const cards = [
-  { name: 'default', title: 'Multi-step procedural workflows for agents and humans',
-    subtitle: tokens.tagline },
+  { name: 'default',
+    title: 'An open format for multi-step agent workflows',
+    subtitle: 'Skills-compatible, on any harness. Agents and humans walk each guide; recorded walks refine the guidance over time.' },
 ];
 for (const card of cards) {
   const lines = wrap(card.title, 66, 1020, 3);
   const tspans = lines.map((l, i) => `<tspan x="${HEAD_X}" dy="${i ? LH : 0}">${esc(l)}</tspan>`).join('');
   const subY = HEAD_Y + (lines.length - 1) * LH + 64;
+  const subLines = wrap(card.subtitle, 30, 1020, 2);
+  const subTspans = subLines.map((l, i) => `<tspan x="90" dy="${i ? 38 : 0}">${esc(l)}</tspan>`).join('');
   const svg = fill(ogTpl, { WORDMARK: esc(tokens.name), TITLE_TSPANS: tspans,
-    SUBTITLE: esc(card.subtitle), SUBTITLE_Y: String(subY), DOMAIN: 'agentguides.io' });
+    SUBTITLE_TSPANS: subTspans, SUBTITLE_Y: String(subY), DOMAIN: 'agentguides.io',
+    HEAD_SIZE: '66' });
   rsvg(svg, ['-w', '1200', '-h', '630'], join(ogDir, `${card.name}.png`));
   console.log('og   ', `og/${card.name}.png`);
 }
@@ -71,4 +75,10 @@ const logoSvg = fill(tpl('logo.svg'));
 writeFileSync(join(outDir, 'logo.svg'), logoSvg);
 rsvg(logoSvg, ['-w', '600'], join(outDir, 'logo.png'));
 console.log('logo ', 'logo.svg, logo.png');
+
+// light-background variant: dark text, white ring fill
+const logoLight = fill(tpl('logo.svg'), { BASE: '#FFFFFF', TEXT: c.base });
+writeFileSync(join(outDir, 'logo-light.svg'), logoLight);
+rsvg(logoLight, ['-w', '600'], join(outDir, 'logo-light.png'));
+console.log('logo ', 'logo-light.svg, logo-light.png');
 console.log(`done — palette: ${tokens.direction}`);

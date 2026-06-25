@@ -1,12 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 372 72" width="372" height="72" role="img" aria-label="Agent Guides">
-  <g transform="translate(4,4)">
-    <rect x="1" y="1" width="62" height="62" rx="14" fill="{{BASE}}" stroke="{{BORDER}}" stroke-width="2"/>
-    <path d="M17 49 L33 15 L46 41" fill="none" stroke="{{ACCENT}}" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
-    <g fill="{{ACCENT}}">
-      <circle cx="17" cy="49" r="5.5"/>
-      <circle cx="33" cy="15" r="5.5"/>
-      <circle cx="46" cy="41" r="5.5"/>
-    </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 330 64" width="330" height="64" role="img" aria-label="Agent Guides">
+  <g>
+    <path d="M17 53 L33 19 L46 45" fill="none" stroke="{{ACCENT}}" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="17" cy="53" r="5.5" fill="{{ACCENT}}"/>
+    <circle cx="33" cy="19" r="5.5" fill="{{ACCENT}}"/>
+    <circle cx="46" cy="45" r="5" fill="{{BASE}}" stroke="{{ACCENT}}" stroke-width="3"/>
   </g>
-  <text x="88" y="47" font-family="{{SANS}}" font-size="34" font-weight="700" fill="{{TEXT}}">Agent Guides</text>
+  <text x="74" y="45" font-family="{{DISPLAY}}" font-size="33" font-weight="700" fill="{{TEXT}}">Agent Guides</text>
 </svg>
