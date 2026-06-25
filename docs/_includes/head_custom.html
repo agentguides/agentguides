@@ -29,6 +29,21 @@
   .hero .hero-tagline { margin: 1.1rem auto 0; max-width: 44rem; color: #A9AEB7;
           font-size: 1.02rem; line-height: 1.6; }
 
+  /* /demo video reservation — a 16:9 frame holding a "coming soon" placeholder until
+     the walkthrough is published (swap the inner div for a YouTube <iframe>). */
+  .video-embed { position: relative; aspect-ratio: 16 / 9; width: 100%; margin: 1.5rem 0 2rem;
+          border: 1px solid #21242B; border-radius: 12px; overflow: hidden;
+          background: radial-gradient(120% 140% at 50% 0%, #15171D 0%, #0F1115 70%); }
+  .video-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .video-placeholder { position: absolute; inset: 0; display: flex; flex-direction: column;
+          align-items: center; justify-content: center; text-align: center; padding: 1.5rem; }
+  .video-placeholder-mark { display: flex; align-items: center; justify-content: center;
+          width: 64px; height: 64px; margin-bottom: 1rem; border-radius: 50%; padding-left: 4px;
+          color: #9AA6F2; font-size: 1.4rem; background: rgba(154, 166, 242, 0.12);
+          border: 1px solid rgba(154, 166, 242, 0.35); }
+  .video-placeholder-title { margin: 0; color: #F0F2F5; font-size: 1.25rem; font-weight: 600; }
+  .video-placeholder-sub { margin: 0.4rem 0 0; color: #A9AEB7; font-size: 0.95rem; }
+
   /* In-page TOC: a clean link list, not a numbered sequence (theme renders numbers
      via a counter ::before, so suppress that rather than list-style). */
   #markdown-toc { padding-left: 0; }
