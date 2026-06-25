@@ -1,0 +1,14 @@
+# Pinned toolchain for the spec site — `mise install` provisions all of it:
+#   ruby / node            Jekyll + the generators in brand/ and tools/
+#   just                   task runner (entry point for the recipes)
+#   lefthook               git hooks (`just init`)
+#   gh                     schema sync (`just sync-schemas`)
+#   npm:markdownlint-cli2  Markdown lint (`just lint-md`)
+# Only librsvg (rsvg-convert, used by `just brand`) needs Homebrew — see Brewfile.
+[tools]
+ruby = "3.3.11"
+node = "24.17.0"
+just = "1.47.0"
+lefthook = "2.1.9"
+gh = "2.95.0"
+"npm:markdownlint-cli2" = "0.22.1"

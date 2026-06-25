@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Agent Guides">
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="#0C0D10" stroke="#21242B" stroke-width="2"/>
+  <path d="M17 49 L33 15 L46 41" fill="none" stroke="#9AA6F2" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="17" cy="49" r="5.5" fill="#9AA6F2"/>
+  <circle cx="33" cy="15" r="5.5" fill="#9AA6F2"/>
+  <circle cx="46" cy="41" r="5" fill="#0C0D10" stroke="#9AA6F2" stroke-width="3"/>
+</svg>

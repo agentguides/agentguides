@@ -25,7 +25,7 @@ my-guide/
 | Path | Purpose |
 | --- | --- |
 | [`docs/`](docs/) | Spec docs + the source of [agentguides.io](https://agentguides.io) |
-| [`schemas/`](schemas/) | JSON schemas for `SKILL.md`, `GUIDE.md`, step files, manifests |
+| [`docs/schemas/`](docs/schemas/) | JSON schemas for `SKILL.md`, `GUIDE.md`, step files, manifests — synced from the runtime; served at `/schemas/<major.minor>/` |
 | [`examples/`](examples/) | Canonical example Guides |
 
 ## Get started

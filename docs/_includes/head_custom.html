@@ -1,0 +1,26 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" href="{{ '/assets/favicon.svg' | relative_url }}" type="image/svg+xml">
+<link rel="icon" href="{{ '/assets/favicon-32.png' | relative_url }}" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="{{ '/assets/apple-touch-icon.png' | relative_url }}">
+<style>
+  .aux-nav .aux-nav-list-item .site-button { padding: 0 0.45rem; color: #A9AEB7; }
+  .aux-nav .aux-nav-list-item .site-button:hover { color: #9AA6F2; background: none; }
+  .aux-nav svg { width: 1.2rem; height: 1.2rem; fill: currentColor; vertical-align: middle; display: inline-block; }
+  /* Monochrome navigation — accent is reserved for in-content links + the mark. */
+  .side-bar .nav-list .nav-list-item .nav-list-link { color: #C8CCD4; }
+  .side-bar .nav-list .nav-list-item .nav-list-link:hover { color: #F0F2F5; }
+  .side-bar .nav-list .nav-list-item .nav-list-link.active { color: #F0F2F5; font-weight: 600; }
+  /* Dense comparison tables: shrink on small screens so more fits before horizontal scroll. */
+  @media (max-width: 50rem) {
+    .table-wrapper { overflow-x: auto; }
+    .table-wrapper table { font-size: 0.72rem; }
+    .table-wrapper td, .table-wrapper th { padding: 0.4rem 0.5rem; }
+  }
+  /* In-page TOC: a clean link list, not a numbered sequence (theme renders numbers
+     via a counter ::before, so suppress that rather than list-style). */
+  #markdown-toc { padding-left: 0; }
+  #markdown-toc li { margin: 0.15rem 0; }
+  #markdown-toc li::before { content: none; }
+</style>

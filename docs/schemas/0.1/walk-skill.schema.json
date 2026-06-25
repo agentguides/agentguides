@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentguides.io/schemas/0.1/walk-skill.schema.json",
+  "title": "Walk Skill frontmatter — guide.runtime advertisement",
+  "description": "JSON Schema for the installed walk Skill's top-level `guide.runtime` block (router/default_mode or mode/capability/features). Distinct from GUIDE.md's guide.runtime (a Guide's requirements). Generated from agentguides.spec.skill.",
+  "$defs": {
+    "Feature": {
+      "enum": [
+        "agent-judgment-reasoning",
+        "branching",
+        "linear-steps",
+        "prereqs",
+        "recover",
+        "retry",
+        "sub-walks"
+      ],
+      "type": "string"
+    },
+    "SkillWalkRuntime": {
+      "additionalProperties": false,
+      "properties": {
+        "router": {
+          "default": false,
+          "type": "boolean"
+        },
+        "default_mode": {
+          "enum": [
+            "observer",
+            "inline"
+          ],
+          "type": "string"
+        },
+        "mode": {
+          "enum": [
+            "observer",
+            "inline"
+          ],
+          "type": "string"
+        },
+        "capability": {
+          "enum": [
+            "full",
+            "low"
+          ],
+          "type": "string"
+        },
+        "features": {
+          "items": {
+            "$ref": "#/$defs/Feature"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "WalkSkillGuide": {
+      "additionalProperties": false,
+      "properties": {
+        "runtime": {
+          "$ref": "#/$defs/SkillWalkRuntime"
+        }
+      },
+      "required": [
+        "runtime"
+      ],
+      "type": "object"
+    }
+  },
+  "properties": {
+    "guide": {
+      "$ref": "#/$defs/WalkSkillGuide"
+    }
+  },
+  "required": [
+    "guide"
+  ],
+  "type": "object"
+}

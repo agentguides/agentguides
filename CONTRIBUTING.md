@@ -7,7 +7,7 @@ Thanks for your interest. This repo is the spec, schemas, and canonical examples
 | Kind of change | Where |
 | --- | --- |
 | Spec text, data model, file conventions | `docs/` (PR opens against the spec) |
-| JSON schemas | `schemas/` |
+| JSON schemas | not here — they are generated from the runtime's models and synced into `docs/schemas/` by `just sync-schemas`. Propose schema changes against [agentguides/runtime](https://github.com/agentguides/runtime); editing the synced copy here is overwritten on the next sync. |
 | New canonical example Guide | `examples/<your-guide>/` |
 | Runtime behavior (CLI, MCP server) | not here — open against [agentguides/runtime](https://github.com/agentguides/runtime) |
 
@@ -20,7 +20,7 @@ No CLA. We're MIT-licensed under [LICENSE](LICENSE); the DCO is sufficient.
 ## Proposing a spec change
 
 1. Open an issue describing the change and the problem it solves before writing the PR
-2. Once the shape is agreed, open the PR against `docs/` + relevant `schemas/`
+2. Once the shape is agreed, open the PR against `docs/`. Schema changes are made in the [runtime](https://github.com/agentguides/runtime) models and land here via `just sync-schemas`
 3. Update at least one example in `examples/` if the change affects authored Guides
 4. The PR must build the site cleanly (CI will check)
 

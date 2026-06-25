@@ -1,0 +1,406 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentguides.io/schemas/0.1/walk-path.schema.json",
+  "title": "WalkPath — reconstructed traversal",
+  "description": "JSON Schema for the reconstructed traversal of one run through a GuideDAG. Wire shape — generated from agentguides.eval.walk_path.WalkPath (model_dump(mode='json')).",
+  "$defs": {
+    "AuditCompletenessMetrics": {
+      "additionalProperties": false,
+      "properties": {
+        "total_events": {
+          "type": "integer"
+        },
+        "events_with_step_id": {
+          "type": "integer"
+        },
+        "step_id_population_ratio": {
+          "type": "number"
+        },
+        "largest_gap_seconds": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "gaps_over_threshold": {
+          "type": "integer"
+        },
+        "has_terminal_event": {
+          "type": "boolean"
+        },
+        "pre_walk_prereqs_observed": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "total_events",
+        "events_with_step_id",
+        "step_id_population_ratio",
+        "largest_gap_seconds",
+        "gaps_over_threshold",
+        "has_terminal_event",
+        "pre_walk_prereqs_observed"
+      ],
+      "type": "object"
+    },
+    "EdgeKind": {
+      "enum": [
+        "requires",
+        "verify_succeeded",
+        "known_failure",
+        "verify_blocked",
+        "verify_skipped",
+        "recover_with",
+        "recovery_returned",
+        "rollback_invoked",
+        "terminate_run"
+      ],
+      "type": "string"
+    },
+    "GuideEdge": {
+      "additionalProperties": false,
+      "properties": {
+        "src": {
+          "type": "string"
+        },
+        "dst": {
+          "type": "string"
+        },
+        "kind": {
+          "$ref": "#/$defs/EdgeKind"
+        },
+        "label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "is_happy_path": {
+          "default": false,
+          "type": "boolean"
+        },
+        "intent": {
+          "default": "forward",
+          "enum": [
+            "forward",
+            "recover",
+            "compensate",
+            "escape"
+          ],
+          "type": "string"
+        },
+        "is_known": {
+          "default": true,
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "src",
+        "dst",
+        "kind"
+      ],
+      "type": "object"
+    },
+    "SegmentExit": {
+      "additionalProperties": false,
+      "properties": {
+        "edge": {
+          "$ref": "#/$defs/GuideEdge"
+        },
+        "resolution": {
+          "enum": [
+            "declared",
+            "synthesis_convention",
+            "synthesis_unknown"
+          ],
+          "type": "string"
+        },
+        "declared_edge_index": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "matched_clause_reason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "runtime_reason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "edge",
+        "resolution"
+      ],
+      "type": "object"
+    },
+    "WalkPathSegment": {
+      "properties": {
+        "node_id": {
+          "type": "string"
+        },
+        "entered_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "exited_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "exit": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SegmentExit"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "event_positions": {
+          "default": [],
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "metadata": {
+          "additionalProperties": true,
+          "default": {},
+          "type": "object"
+        },
+        "is_known": {
+          "default": true,
+          "type": "boolean"
+        },
+        "exit_edge": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/GuideEdge"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "readOnly": true
+        }
+      },
+      "required": [
+        "node_id",
+        "entered_at",
+        "exit_edge"
+      ],
+      "type": "object"
+    }
+  },
+  "properties": {
+    "run_id": {
+      "type": "string"
+    },
+    "guide_id": {
+      "type": "string"
+    },
+    "guide_version": {
+      "type": "string"
+    },
+    "segments": {
+      "items": {
+        "$ref": "#/$defs/WalkPathSegment"
+      },
+      "type": "array"
+    },
+    "partial": {
+      "type": "boolean"
+    },
+    "terminal_node_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "audit_completeness": {
+      "$ref": "#/$defs/AuditCompletenessMetrics"
+    },
+    "verify_blocked_edges": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/GuideEdge"
+      },
+      "type": "array"
+    },
+    "end_state_score": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "past_point_of_no_return": {
+      "default": false,
+      "type": "boolean"
+    },
+    "traversed_edges": {
+      "items": {
+        "$ref": "#/$defs/GuideEdge"
+      },
+      "readOnly": true,
+      "type": "array"
+    },
+    "edge_count": {
+      "readOnly": true,
+      "type": "integer"
+    },
+    "distinct_nodes": {
+      "items": {
+        "type": "string"
+      },
+      "readOnly": true,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "wall_clock_seconds": {
+      "readOnly": true,
+      "type": "number"
+    },
+    "recovery_loops": {
+      "readOnly": true,
+      "type": "integer"
+    },
+    "rollback_invocations": {
+      "readOnly": true,
+      "type": "integer"
+    },
+    "reached_end_state": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "readOnly": true
+    },
+    "rollback_segments": {
+      "items": {
+        "$ref": "#/$defs/WalkPathSegment"
+      },
+      "readOnly": true,
+      "type": "array"
+    },
+    "rollback_completed_cleanly": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "readOnly": true
+    },
+    "sub_walk_segments": {
+      "items": {
+        "$ref": "#/$defs/WalkPathSegment"
+      },
+      "readOnly": true,
+      "type": "array"
+    },
+    "unknown_segments": {
+      "items": {
+        "$ref": "#/$defs/WalkPathSegment"
+      },
+      "readOnly": true,
+      "type": "array"
+    },
+    "unknown_edges": {
+      "items": {
+        "$ref": "#/$defs/GuideEdge"
+      },
+      "readOnly": true,
+      "type": "array"
+    },
+    "has_unknowns": {
+      "readOnly": true,
+      "type": "boolean"
+    },
+    "known_path_coverage": {
+      "readOnly": true,
+      "type": "number"
+    },
+    "compensation_ratio": {
+      "readOnly": true,
+      "type": "number"
+    },
+    "is_stuck": {
+      "readOnly": true,
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "run_id",
+    "guide_id",
+    "guide_version",
+    "segments",
+    "partial",
+    "terminal_node_id",
+    "audit_completeness",
+    "traversed_edges",
+    "edge_count",
+    "distinct_nodes",
+    "wall_clock_seconds",
+    "recovery_loops",
+    "rollback_invocations",
+    "reached_end_state",
+    "rollback_segments",
+    "rollback_completed_cleanly",
+    "sub_walk_segments",
+    "unknown_segments",
+    "unknown_edges",
+    "has_unknowns",
+    "known_path_coverage",
+    "compensation_ratio",
+    "is_stuck"
+  ],
+  "type": "object"
+}

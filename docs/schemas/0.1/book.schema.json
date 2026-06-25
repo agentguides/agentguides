@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentguides.io/schemas/0.1/book.schema.json",
+  "title": "BOOK.md frontmatter",
+  "description": "JSON Schema for the YAML frontmatter of a Book's BOOK.md file (SPEC §15a). Generated from agentguides.spec.book.",
+  "$defs": {
+    "BookGuideEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "description": "Kebab-case id of a child Guide; matches a book subdirectory.",
+          "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+          "type": "string"
+        },
+        "role": {
+          "enum": [
+            "primary",
+            "recovery",
+            "reference"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "role"
+      ],
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "description": "Unique kebab-case identifier for the book.",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "type": "string"
+    },
+    "title": {
+      "description": "Human-readable title for the book.",
+      "minLength": 1,
+      "type": "string"
+    },
+    "version": {
+      "description": "Semver version for the book.",
+      "pattern": "^\\d+\\.\\d+\\.\\d+(?:-[0-9A-Za-z.-]+)?(?:\\+[0-9A-Za-z.-]+)?$",
+      "type": "string"
+    },
+    "description": {
+      "description": "One-paragraph summary of what the book covers.",
+      "minLength": 1,
+      "type": "string"
+    },
+    "guides": {
+      "description": "Ordered list of child Guides (order is informational). May be empty — a freshly-initialized book starts with zero Guides and has them added over time.",
+      "items": {
+        "$ref": "#/$defs/BookGuideEntry"
+      },
+      "type": "array"
+    },
+    "authors": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "id",
+    "title",
+    "version",
+    "description",
+    "guides"
+  ],
+  "type": "object"
+}

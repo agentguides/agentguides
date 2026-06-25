@@ -1,0 +1,16 @@
+# Git hooks for agentguides/agentguides. Install once after cloning: `just init`.
+# (Brand assets and synced schemas are regenerated deliberately via `just brand` /
+# `just sync-schemas` — they're binary / tag-driven, so they're not auto-run here.)
+pre-commit:
+  commands:
+    md-pages:
+      # When page content changes, regenerate the per-page Markdown twins and re-stage
+      # them so docs/llms-md/ (served at /<slug>.md) never drifts from docs/*.md.
+      priority: 1
+      glob: "docs/*.md"
+      run: just md-pages
+      stage_fixed: true
+    markdownlint:
+      # Lint Markdown after md-pages has regenerated. Runs every commit (fast).
+      priority: 2
+      run: just lint-md

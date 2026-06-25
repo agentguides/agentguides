@@ -1,0 +1,28 @@
+---
+permalink: /llms.txt
+layout: none
+sitemap: false
+---
+# {{ site.title }}
+
+> {{ site.description }}
+
+{{ site.data.llms.intro }}
+
+## Docs
+{% assign docs = site.html_pages | where_exp: "p", "p.title" | where_exp: "p", "p.url != '/'" | sort: "nav_order" -%}
+{% for p in docs -%}
+- [{{ p.title }}]({{ p.url | replace: '/', '' | prepend: '/' | append: '.md' | absolute_url }}){% if p.description %}: {{ p.description }}{% endif %}
+{% endfor %}
+
+## Schemas
+{{ site.data.llms.schemas_intro }}
+{% assign schemas = site.static_files | where_exp: "f", "f.path contains '/schemas/0.1/'" | sort: "name" -%}
+{% for f in schemas -%}
+- [{{ f.name }}]({{ f.path | absolute_url }})
+{% endfor %}
+
+## Optional
+{% for link in site.data.llms.optional -%}
+- [{{ link.title }}]({{ link.url }})
+{% endfor -%}
