@@ -12,6 +12,10 @@ default:
 init:
     mise exec -- lefthook install
 
+# Run the pre-commit hooks manually (pass --all-files to check everything).
+pre-commit *ARGS:
+    mise exec -- lefthook run pre-commit {{ARGS}}
+
 # Build the static site into docs/_site/.
 build:
     cd docs && mise exec -- bundle exec jekyll build
