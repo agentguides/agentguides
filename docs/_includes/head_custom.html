@@ -12,4 +12,10 @@
   .side-bar .nav-list .nav-list-item .nav-list-link { color: #C8CCD4; }
   .side-bar .nav-list .nav-list-item .nav-list-link:hover { color: #F0F2F5; }
   .side-bar .nav-list .nav-list-item .nav-list-link.active { color: #F0F2F5; font-weight: 600; }
+  /* Dense comparison tables: shrink on small screens so more fits before horizontal scroll. */
+  @media (max-width: 50rem) {
+    .table-wrapper { overflow-x: auto; }
+    .table-wrapper table { font-size: 0.72rem; }
+    .table-wrapper td, .table-wrapper th { padding: 0.4rem 0.5rem; }
+  }
 </style>
