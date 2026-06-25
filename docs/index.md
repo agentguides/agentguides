@@ -2,19 +2,20 @@
 title: Home
 layout: home
 nav_order: 1
+description: A Skills-compatible specification for multi-step procedural workflows — runbooks, incident response, migrations — walked by an agent and a human together.
 ---
 
-[Quickstart](quickstart){: .btn .btn-purple .fs-5 .mb-4 .mb-md-0 .mr-2 }
-[Specification](specification){: .btn .fs-5 .mb-4 .mb-md-0 .mr-2 }
+[Quickstart](/quickstart/){: .btn .btn-purple .fs-5 .mb-4 .mb-md-0 .mr-2 }
+[Specification](/specification/){: .btn .fs-5 .mb-4 .mb-md-0 .mr-2 }
 [![GitHub stars](https://img.shields.io/github/stars/agentguides/agentguides?style=social)](https://github.com/agentguides/agentguides)
 
-*Skill-compatible specification for multi-step procedural workflows. Agent and human walk together as equal participants; every walk produces an append-only event log.*
+*Skills-compatible specification for self-improving multi-step procedural workflows.*
 
 ## What are Agent Guides?
 
 Agent Guides are an open specification for *multi-step procedural workflows* — runbooks, incident response, migrations, onboarding — that an agent and a human walk through together.
 
-A Guide is a directory containing a `SKILL.md`, a `GUIDE.md`, and one markdown file per step. Every Guide is a valid Skill: Skill-only harnesses see a useful self-describing artifact, and Guide-aware harnesses additionally execute the workflow step by step.
+A Guide is a directory containing a `SKILL.md`, a `GUIDE.md`, and one markdown file per step. Every Guide is a valid Skill: Skills-only harnesses see a useful self-describing artifact, and Guide-aware harnesses additionally execute the workflow step by step.
 
 ```text
 my-guide/
@@ -44,9 +45,9 @@ The full record of the walk — agent reasoning, human reports, recoveries, roll
 
 ## Where can I use Agent Guides?
 
-Guides are designed to run under any Skill-compatible harness. Guide-aware execution is provided by the [`guide`](https://github.com/agentguides/runtime) runtime — install it directly, or activate it inside an existing Skills-only harness via the reference Skills we publish.
+Guides are designed to run under any Skills-compatible harness. Guide-aware execution is provided by the [`guide`](https://github.com/agentguides/runtime) runtime — install it directly, or activate it inside an existing Skills-only harness via the reference Skills we publish.
 
-See the [Client showcase](clients) for the current list.
+See the [Clients](/clients/) for the current list.
 
 ## Open standard
 
@@ -54,6 +55,6 @@ Agent Guides is an open MIT-licensed specification, designed to extend the Skill
 
 ## Get started
 
-- [Quickstart](quickstart) — author and run a Guide.
-- [Specification](specification) — the full data model.
-- [Client showcase](clients) — where Guides run today.
+- [Quickstart](/quickstart/) — author and run a Guide.
+- [Specification](/specification/) — the full data model.
+- [Clients](/clients/) — where Guides run today.

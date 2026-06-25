@@ -1,6 +1,124 @@
 ---
-title: Client showcase
-nav_order: 4
+title: Clients
+nav_order: 5
+permalink: /clients/
+description: Where Agent Guides run today — the guide runtime, Claude Code, and Hermes — plus how to add support for a new client.
 ---
 
-Forthcoming.
+# Clients
+{: .no_toc }
+
+Agent Guides is a **format, not a product**. Distribution flows through compatible
+clients — the same model as Agent Skills. The payoff is portability: the same
+`GUIDE.md` walks under Claude Code, under Hermes, and under a headless CLI, and it
+will walk under whatever harness comes next, so a Guide you write today isn't tied to
+the tool you run it in.
+
+A *client* is any agentic runtime that can discover a Guide — which it gets for
+free, because every Guide is a valid Skill — and, when it's Guide-aware, walk it
+step by step with human and agent as equal participants, recording an append-only
+event log as it goes.
+
+Two clients run Guides today. Both build on the same runtime.
+
+1. TOC
+{:toc}
+
+---
+
+## The runtime: `guide`
+
+Every client below stands on one binary. `guide` (the `agentguides` package on
+PyPI) is the reference runtime: the validator, the MCP server the harness talks to,
+and the state-and-audit backend that records each walk. It is the one hard
+prerequisite — the per-client wiring (the walk Skills, the audit hooks, the MCP
+registration) is installed by the client's plugin or by `guide setup <harness>`.
+
+```bash
+uv tool install agentguides     # or: pipx install agentguides
+guide --version
+```
+
+`guide` is also a client in its own right: `guide new`, `guide validate`,
+`guide walk` work with no harness at all. See the [Quickstart](/quickstart/).
+
+---
+
+## Claude Code
+
+Runs Guides via the **[claude-plugin](https://github.com/agentguides/claude-plugin)**
+(v0.1.0). The plugin bundles the walk Skills, the walk-observer audit hooks, and the
+`guide` MCP server; every walk record is tagged `harness: claude-code`.
+
+```bash
+uv tool install agentguides     # if guide isn't already on PATH
+claude /plugin install https://github.com/agentguides/claude-plugin
+```
+
+Then enable it in `~/.claude/settings.json`:
+
+```json
+{ "enabledPlugins": ["guide"] }
+```
+
+Ask Claude to walk a Guide by name, or invoke `/guide:walk`. Claude Code uses
+**observer** mode: the harness reconstructs the audit log from the agent's own tool
+calls and reasoning, so the agent walks the way it normally would and the evidence
+is built around it.
+
+---
+
+## Hermes
+
+Runs Guides via the **[hermes-plugin](https://github.com/agentguides/hermes-plugin)**
+(v0.1.0). Hermes is multi-profile, so the plugin carries more: it registers the
+`guide` MCP server per profile, exposes a per-profile view of your Guide library,
+and can keep that library synced in the background. Walk records are tagged
+`harness: hermes` and `scope: <profile>`.
+
+```bash
+hermes plugins install agentguides/hermes-plugin --enable
+```
+
+First run installs the runtime if needed, derives the profile scope, and pulls your
+configured Guides into the library. Manage them with `hermes guide`:
+
+```bash
+hermes guide install <id>    # pull + install into this profile's view
+hermes guide list            # what this profile can walk
+hermes guide sync            # refresh the library
+```
+
+---
+
+## How a client runs a Guide
+
+Because every Guide is a valid Skill, any Skills-compatible harness can discover and
+load one — a Skills-only client sees a useful artifact and nothing breaks. A
+**Guide-aware** client goes further and executes it: it spawns `guide mcp`, surfaces
+the walk Skills, and writes an append-only event log to the shared state backend as
+the walk proceeds. Clients share one home directory, so a Guide walked in Claude
+Code and the same Guide walked in Hermes land their records side by side — one log,
+partitioned by `harness` and `scope`.
+
+A client records that log in one of two modes:
+
+- **observer** — the harness reconstructs the log from the agent's tool calls and
+  reasoning. Full capability: retries, recovery, sub-walks, branching. Claude Code's
+  default.
+- **inline** — the agent is the sole author of the log, emitting each event through
+  an explicit call. Lighter: linear steps and prerequisites.
+
+Either way, the artifact that comes out the other end is the same: a timestamped,
+append-only record of who did what, why, and how it ended.
+
+---
+
+## Add a client
+
+Any runtime that can host an MCP server and load Skills can become Guide-aware. The
+integration surface is deliberately small — it's the **harness contract** in the
+[Specification](/specification/). Because the Guide is data, not framework code,
+adding a client makes every existing Guide walkable there on day one. New clients
+are welcome — open a PR against
+[agentguides/agentguides](https://github.com/agentguides/agentguides).

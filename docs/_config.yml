@@ -1,5 +1,5 @@
 title: Agent Guides
-description: Skill-compatible specification for multi-step procedural workflows.
+description: Skills-compatible specification for self-improving multi-step procedural workflows.
 url: https://agentguides.io
 
 remote_theme: just-the-docs/just-the-docs@v0.12.0

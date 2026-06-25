@@ -1,20 +1,22 @@
 ---
 title: Quickstart
-nav_order: 2
+nav_order: 4
+permalink: /quickstart/
+description: Install the guide runtime, then author, validate, and walk your first Agent Guide in about five minutes.
 ---
 
 Author and walk your first Guide in five minutes.
 
 ## Install
 
-The runtime CLI is published as `guide-cli` on PyPI; it installs a `guide` binary on your PATH.
+The runtime CLI is published as `agentguides` on PyPI; it installs a `guide` binary on your PATH.
 
 ```sh
-uv tool install guide-cli
+uv tool install agentguides
 guide --version
 ```
 
-If you're using a Guide-aware harness (Claude Code, Hermes), the plugin for that harness bundles `guide` plus the activation Skills the harness needs — install it from the harness's plugin catalog instead. See the [Client showcase](clients).
+If you're using a Guide-aware harness (Claude Code, Hermes), the plugin for that harness bundles `guide` plus the activation Skills the harness needs — install it from the harness's plugin catalog instead. See the [Clients](/clients/).
 
 ## Scaffold a Guide
 
@@ -27,7 +29,7 @@ This creates `./guides/my-guide/` with a valid `SKILL.md`, a `GUIDE.md`, and a s
 ## Validate
 
 ```sh
-guide validate --root ./guides/my-guide --collection ./guides
+guide validate --root ./guides/my-guide --book ./guides
 ```
 
 Should print `OK`. If not, the error messages point at the field in `GUIDE.md` or the step frontmatter that needs adjustment.
@@ -40,6 +42,6 @@ The agent records its reasoning before each verdict. You report what you observe
 
 ## Next steps
 
-- [Specification](specification) — the full data model.
-- [Client showcase](clients) — Guide-aware harnesses available today.
+- [Specification](/specification/) — the full data model.
+- [Clients](/clients/) — Guide-aware harnesses available today.
 - [GitHub](https://github.com/agentguides/agentguides) — contribute spec changes or canonical examples.
