@@ -1,0 +1,246 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentguides.io/schemas/0.1/run-state.schema.json",
+  "title": "Run state file frontmatter",
+  "description": "JSON Schema for the YAML frontmatter of a run state file (<state_path>/<guide-id>/runs/<run-id>.md). The Markdown body is the append-only audit log. Generated from agentguides.spec.run_state.",
+  "$defs": {
+    "RecoveryFrame": {
+      "additionalProperties": false,
+      "properties": {
+        "recovered_step": {
+          "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+          "type": "string"
+        },
+        "recovery_run_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "recovered_step",
+        "recovery_run_id"
+      ],
+      "type": "object"
+    },
+    "RunBlock": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "description": "ISO-8601 UTC timestamp (colons→hyphens) + 4-hex suffix.",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}-\\d{2}-\\d{2}Z-[0-9a-f]{4}$",
+          "type": "string"
+        },
+        "guide_id": {
+          "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+          "type": "string"
+        },
+        "guide_version": {
+          "pattern": "^\\d+\\.\\d+\\.\\d+(?:-[0-9A-Za-z.-]+)?(?:\\+[0-9A-Za-z.-]+)?$",
+          "type": "string"
+        },
+        "spec_version": {
+          "const": "0.1",
+          "type": "string"
+        },
+        "started_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "updated_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "pending",
+            "running",
+            "paused",
+            "succeeded",
+            "failed",
+            "rolled_back",
+            "abandoned"
+          ],
+          "type": "string"
+        },
+        "current_step": {
+          "anyOf": [
+            {
+              "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "steps": {
+          "additionalProperties": {
+            "$ref": "#/$defs/StepState"
+          },
+          "propertyNames": {
+            "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+          },
+          "type": "object"
+        },
+        "recovery_stack": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/RecoveryFrame"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "prereqs_checked": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "parent_run": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "parent_step": {
+          "anyOf": [
+            {
+              "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "harness": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "scope": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "guide_id",
+        "guide_version",
+        "spec_version",
+        "started_at",
+        "updated_at",
+        "status",
+        "steps"
+      ],
+      "type": "object"
+    },
+    "StepState": {
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "enum": [
+            "pending",
+            "running",
+            "verifying",
+            "succeeded",
+            "failed",
+            "skipped",
+            "rolled_back"
+          ],
+          "type": "string"
+        },
+        "attempts": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "started_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "finished_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "verify_result": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/VerifyResult"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "status",
+        "attempts"
+      ],
+      "type": "object"
+    },
+    "VerifyResult": {
+      "additionalProperties": true,
+      "properties": {
+        "exit": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "output": {}
+      },
+      "type": "object"
+    }
+  },
+  "properties": {
+    "run": {
+      "$ref": "#/$defs/RunBlock"
+    }
+  },
+  "required": [
+    "run"
+  ],
+  "type": "object"
+}

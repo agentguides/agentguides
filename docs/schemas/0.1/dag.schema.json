@@ -1,0 +1,347 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentguides.io/schemas/0.1/dag.schema.json",
+  "title": "GuideDAG — derived guide graph",
+  "description": "JSON Schema for the typed guide graph (nodes/edges/kinds) derived from a Guide and served over HTTP / emitted as JSON. Wire shape — generated from agentguides.eval.guide_dag.GuideDAG (model_dump(mode='json')).",
+  "$defs": {
+    "EdgeKind": {
+      "enum": [
+        "requires",
+        "verify_succeeded",
+        "known_failure",
+        "verify_blocked",
+        "verify_skipped",
+        "recover_with",
+        "recovery_returned",
+        "rollback_invoked",
+        "terminate_run"
+      ],
+      "type": "string"
+    },
+    "EndState": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "score": {
+          "default": 1.0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "type": "object"
+    },
+    "FailureClause": {
+      "additionalProperties": false,
+      "properties": {
+        "reason": {
+          "type": "string"
+        },
+        "strategy": {
+          "default": "abort",
+          "type": "string"
+        },
+        "max_retries": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "recover_with": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "resume_after_recovery": {
+          "default": true,
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "reason"
+      ],
+      "type": "object"
+    },
+    "GuideEdge": {
+      "additionalProperties": false,
+      "properties": {
+        "src": {
+          "type": "string"
+        },
+        "dst": {
+          "type": "string"
+        },
+        "kind": {
+          "$ref": "#/$defs/EdgeKind"
+        },
+        "label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "is_happy_path": {
+          "default": false,
+          "type": "boolean"
+        },
+        "intent": {
+          "default": "forward",
+          "enum": [
+            "forward",
+            "recover",
+            "compensate",
+            "escape"
+          ],
+          "type": "string"
+        },
+        "is_known": {
+          "default": true,
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "src",
+        "dst",
+        "kind"
+      ],
+      "type": "object"
+    },
+    "GuideNode": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "kind": {
+          "$ref": "#/$defs/NodeKind"
+        },
+        "action_type": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "verify_type": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "declared_tool_calls": {
+          "default": 0,
+          "type": "integer"
+        },
+        "sub_guide_ref": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "effect": {
+          "anyOf": [
+            {
+              "enum": [
+                "read-only",
+                "none",
+                "reversible",
+                "irreversible"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "end_state": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EndState"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "kind"
+      ],
+      "type": "object"
+    },
+    "NodeKind": {
+      "enum": [
+        "entry",
+        "step",
+        "sub_guide",
+        "recovery_sub_guide",
+        "end_state",
+        "terminal_stuck",
+        "terminal_abandoned"
+      ],
+      "type": "string"
+    }
+  },
+  "properties": {
+    "guide_id": {
+      "type": "string"
+    },
+    "guide_version": {
+      "type": "string"
+    },
+    "nodes": {
+      "items": {
+        "$ref": "#/$defs/GuideNode"
+      },
+      "type": "array"
+    },
+    "edges": {
+      "items": {
+        "$ref": "#/$defs/GuideEdge"
+      },
+      "type": "array"
+    },
+    "declared_prereq_tools": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "end_states": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/EndState"
+      },
+      "type": "array"
+    },
+    "step_terminates_at": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "default": {},
+      "type": "object"
+    },
+    "rollback_terminates_at": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "default": {},
+      "type": "object"
+    },
+    "step_failure_clauses": {
+      "additionalProperties": {
+        "items": {
+          "$ref": "#/$defs/FailureClause"
+        },
+        "type": "array"
+      },
+      "default": {},
+      "type": "object"
+    },
+    "node_index": {
+      "additionalProperties": {
+        "$ref": "#/$defs/GuideNode"
+      },
+      "readOnly": true,
+      "type": "object"
+    },
+    "adjacency_out": {
+      "additionalProperties": {
+        "items": {
+          "$ref": "#/$defs/GuideEdge"
+        },
+        "type": "array"
+      },
+      "readOnly": true,
+      "type": "object"
+    },
+    "adjacency_in": {
+      "additionalProperties": {
+        "items": {
+          "$ref": "#/$defs/GuideEdge"
+        },
+        "type": "array"
+      },
+      "readOnly": true,
+      "type": "object"
+    },
+    "terminal_nodes": {
+      "items": {
+        "$ref": "#/$defs/GuideNode"
+      },
+      "readOnly": true,
+      "type": "array"
+    },
+    "end_state_index": {
+      "additionalProperties": {
+        "$ref": "#/$defs/EndState"
+      },
+      "readOnly": true,
+      "type": "object"
+    },
+    "preferred_end_state": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/EndState"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "readOnly": true
+    }
+  },
+  "required": [
+    "guide_id",
+    "guide_version",
+    "nodes",
+    "edges",
+    "node_index",
+    "adjacency_out",
+    "adjacency_in",
+    "terminal_nodes",
+    "end_state_index",
+    "preferred_end_state"
+  ],
+  "type": "object"
+}
