@@ -21,6 +21,10 @@ init:
 pre-commit *ARGS:
     lefthook run pre-commit {{ARGS}}
 
+# Install the site's Ruby gems (one-time, after `mise install`).
+deps:
+    cd docs && bundle install
+
 # Build the static site into docs/_site/.
 build:
     cd docs && bundle exec jekyll build
