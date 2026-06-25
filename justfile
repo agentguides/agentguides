@@ -26,3 +26,7 @@ sync-schemas TAG="v0.5.10":
 # Regenerate brand assets (OG card, favicons, logo) from brand/tokens.json into docs/assets/.
 brand:
     node brand/render.mjs
+
+# Regenerate clean Markdown twins of each page (<url>/index.html.md) for LLM ingestion.
+md-pages:
+    node tools/gen_md_pages.mjs

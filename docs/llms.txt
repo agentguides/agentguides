@@ -12,7 +12,7 @@ sitemap: false
 ## Docs
 {% assign docs = site.html_pages | where_exp: "p", "p.title" | where_exp: "p", "p.url != '/'" | sort: "nav_order" -%}
 {% for p in docs -%}
-- [{{ p.title }}]({{ p.url | absolute_url }}){% if p.description %}: {{ p.description }}{% endif %}
+- [{{ p.title }}]({{ p.url | replace: '/', '' | prepend: '/' | append: '.md' | absolute_url }}){% if p.description %}: {{ p.description }}{% endif %}
 {% endfor %}
 
 ## Schemas
