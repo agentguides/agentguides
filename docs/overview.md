@@ -7,8 +7,8 @@ description: A tour of Agent Guides — equal agent–human participation, advis
 
 # Overview
 
-A Guide turns a multi-step procedure into something an agent and a person can walk
-together, while the runtime keeps a record of what happened. This page is a conceptual
+A Guide turns a multi-step procedure into something agents and humans walk together,
+while the runtime keeps a record of what happened. This page is a conceptual
 tour of what a Guide gives you and where each piece is useful. For the exact format see
 the [Specification](/specification/); to build one, see the [Quickstart](/quickstart/).
 

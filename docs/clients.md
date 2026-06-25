@@ -8,11 +8,10 @@ description: Where Agent Guides run today — the guide runtime, Claude Code, an
 # Clients
 {: .no_toc }
 
-Agent Guides is a **format, not a product**. Distribution flows through compatible
-clients — the same model as Agent Skills. The payoff is portability: the same
-`GUIDE.md` walks under Claude Code, under Hermes, and under a headless CLI, and it
-will walk under whatever harness comes next, so a Guide you write today isn't tied to
-the tool you run it in.
+Agent Guides is an open format, so there's no single app to install — distribution
+flows through compatible clients, the same model as Agent Skills. The same `GUIDE.md`
+walks under Claude Code, under Hermes, and under a headless CLI, and under whatever
+harness comes next; a Guide you write today isn't tied to the tool you run it in.
 
 A *client* is any agentic runtime that can discover a Guide — which it gets for
 free, because every Guide is a valid Skill — and, when it's Guide-aware, walk it
