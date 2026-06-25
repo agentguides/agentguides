@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 330 64" width="330" height="64" role="img" aria-label="Agent Guides">
   <g>
-    <path d="M17 53 L33 19 L46 45" fill="none" stroke="#3D5AFF" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
-    <circle cx="17" cy="53" r="5.5" fill="#3D5AFF"/>
-    <circle cx="33" cy="19" r="5.5" fill="#3D5AFF"/>
-    <circle cx="46" cy="45" r="5" fill="#FFFFFF" stroke="#3D5AFF" stroke-width="3"/>
+    <path d="M17 53 L33 19 L46 45" fill="none" stroke="#9AA6F2" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="17" cy="53" r="5.5" fill="#9AA6F2"/>
+    <circle cx="33" cy="19" r="5.5" fill="#9AA6F2"/>
+    <circle cx="46" cy="45" r="5" fill="#FFFFFF" stroke="#9AA6F2" stroke-width="3"/>
   </g>
-  <text x="74" y="45" font-family="Inter" font-size="33" font-weight="700" fill="#0A0C12">Agent Guides</text>
+  <text x="74" y="45" font-family="Inter" font-size="33" font-weight="700" fill="#0C0D10">Agent Guides</text>
 </svg>

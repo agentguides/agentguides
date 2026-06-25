@@ -9,6 +9,12 @@ twitter:
   username: agentguides
   card: summary_large_image
 
+# Top-right header links — rendered as icons by _includes/components/aux_nav.html.
+# Socials added once handles are claimed (infra-ff7); keys map to icons (GitHub/X/Discord).
+aux_links:
+  GitHub: https://github.com/agentguides/agentguides
+aux_links_new_tab: true
+
 # jekyll-seo-tag reads the page-level `image`, not a site-level one — set the default
 # OG image as a front-matter default. Pages may override with their own `image:`.
 defaults:

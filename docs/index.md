@@ -5,10 +5,6 @@ nav_order: 1
 description: A Skills-compatible specification for multi-step agent workflows — runbooks, incident response, migrations — walked by agents and humans together.
 ---
 
-[Quickstart](/quickstart/){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
-[Specification](/specification/){: .btn .fs-5 .mb-4 .mb-md-0 .mr-2 }
-[![GitHub stars](https://img.shields.io/github/stars/agentguides/agentguides?style=social)](https://github.com/agentguides/agentguides)
-
 *An open, Skills-compatible specification for multi-step agent workflows. Agents and humans walk each guide; recorded walks refine the guidance over time.*
 
 ## What are Agent Guides?
