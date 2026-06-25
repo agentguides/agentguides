@@ -8,9 +8,9 @@ runtime_repo := "agentguides/runtime"
 default:
     @just --list
 
-# Install git hooks (lefthook). Run once after cloning. Needs: brew install lefthook.
+# Install git hooks (lefthook). Run once after cloning (after `mise install`).
 init:
-    lefthook install
+    mise exec -- lefthook install
 
 # Build the static site into docs/_site/.
 build:
@@ -28,10 +28,10 @@ sync-schemas TAG="v0.5.10":
     set -euo pipefail
     dest="docs/schemas/0.1"
     rm -rf "$dest"; mkdir -p "$dest"
-    names="$(gh api "repos/{{runtime_repo}}/contents/schemas?ref={{TAG}}" \
+    names="$(mise exec -- gh api "repos/{{runtime_repo}}/contents/schemas?ref={{TAG}}" \
       --jq '.[] | select(.name | endswith(".schema.json")) | .name')"
     for name in $names; do
-      gh api "repos/{{runtime_repo}}/contents/schemas/$name?ref={{TAG}}" \
+      mise exec -- gh api "repos/{{runtime_repo}}/contents/schemas/$name?ref={{TAG}}" \
         -H "Accept: application/vnd.github.raw" > "$dest/$name"
       echo "  $name"
     done
@@ -48,3 +48,7 @@ brand:
 # Regenerate clean Markdown twins of each page (<url>/index.html.md) for LLM ingestion.
 md-pages:
     mise exec -- node tools/gen_md_pages.mjs
+
+# Lint Markdown (content pages + repo docs) with markdownlint.
+lint-md:
+    mise exec -- markdownlint-cli2 "*.md" "docs/*.md"

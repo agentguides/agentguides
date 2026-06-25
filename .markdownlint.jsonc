@@ -1,4 +1,16 @@
 {
+  // Base ruleset.
   "default": true,
-  "MD013": false
+  // Line length — prose wraps freely.
+  "MD013": false,
+  // The page's body `# H1` is the title; Jekyll front matter also carries `title:`.
+  // Don't count the front-matter title as a second H1.
+  "MD025": { "front_matter_title": "" },
+  // kramdown attribute lists (e.g. `{: .no_toc }`) must sit on the line directly
+  // below their heading, with no blank line — incompatible with blanks-around-headings.
+  "MD022": false,
+  // Bold lead-ins before tables (e.g. **Reach for X when…**) are an intentional pattern.
+  "MD036": false,
+  // Table pipe-spacing style is a preference; our tables render correctly.
+  "MD060": false
 }
