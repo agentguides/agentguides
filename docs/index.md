@@ -1,11 +1,16 @@
 ---
-title: Home
+title: Agent Guides
 layout: home
 nav_order: 1
-description: A Skills-compatible specification for multi-step agent workflows — runbooks, incident response, migrations — walked by agents and humans together.
+description: An open format for multi-step agent workflows. Skills-compatible on any harness; agents and humans walk each guide; recorded walks refine the guidance over time.
 ---
 
-*An open, Skills-compatible specification for multi-step agent workflows. Agents and humans walk each guide; recorded walks refine the guidance over time.*
+<!-- markdownlint-disable MD033 -->
+<div class="hero">
+  <h1 class="hero-title"><img src="{{ '/assets/logo.svg' | relative_url }}" alt="Agent Guides" /></h1>
+  <p class="hero-tagline">An open format for multi-step agent workflows. Skills-compatible on any harness; agents and humans walk each guide, and recorded walks refine the guidance over time.</p>
+</div>
+<!-- markdownlint-enable MD033 -->
 
 ## What are Agent Guides?
 

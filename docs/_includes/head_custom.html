@@ -18,6 +18,17 @@
     .table-wrapper table { font-size: 0.72rem; }
     .table-wrapper td, .table-wrapper th { padding: 0.4rem 0.5rem; }
   }
+  /* Home hero: a thin horizontal banner strip — the rendered wordmark + one tagline
+     line, centered. The <img> alt carries the H1 text ("Agent Guides") for SEO/a11y. */
+  .hero { padding: 2.25rem 1.5rem; margin: 0 0 2.5rem; text-align: center;
+          background: radial-gradient(120% 140% at 50% 0%, #15171D 0%, #0F1115 70%);
+          border: 1px solid #21242B; border-radius: 12px; }
+  .hero .hero-title { margin: 0; padding: 0; border: 0; }
+  .hero .hero-title img { display: block; width: 300px; max-width: 78%; height: auto;
+          margin: 0 auto; filter: drop-shadow(0 2px 14px rgba(154, 166, 242, 0.18)); }
+  .hero .hero-tagline { margin: 1.1rem auto 0; max-width: 44rem; color: #A9AEB7;
+          font-size: 1.02rem; line-height: 1.6; }
+
   /* In-page TOC: a clean link list, not a numbered sequence (theme renders numbers
      via a counter ::before, so suppress that rather than list-style). */
   #markdown-toc { padding-left: 0; }
