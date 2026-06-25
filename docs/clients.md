@@ -16,7 +16,7 @@ the tool you run it in.
 
 A *client* is any agentic runtime that can discover a Guide — which it gets for
 free, because every Guide is a valid Skill — and, when it's Guide-aware, walk it
-step by step with human and agent as equal participants, recording an append-only
+step by step with agents and humans as equal participants, recording an append-only
 event log as it goes.
 
 Two clients run Guides today. Both build on the same runtime.

@@ -2,7 +2,7 @@
 title: Overview
 nav_order: 2
 permalink: /overview/
-description: A tour of Agent Guides — equal human–agent participation, advised structure, verification, recovery, scored outcomes, and an append-only audit log.
+description: A tour of Agent Guides — equal agent–human participation, advised structure, verification, recovery, scored outcomes, and an append-only audit log.
 ---
 
 # Overview

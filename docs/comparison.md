@@ -44,7 +44,7 @@ LLM-in-the-loop frameworks. The closest neighbors — and mostly SDK-coupled.
 | Tool | Where it wins | Where Agent Guides fits better | Reach for it when |
 |---|---|---|---|
 | **LangGraph** | Rich graph primitives, tight LangChain integration, fine-grained control flow | Data format vs. framework — the same Guide walks anywhere; human-as-equal-participant is first-class, not a feature you build | LangChain shop, complex control flow, no portability constraint |
-| **CrewAI** | Multi-agent roles, fast for agent-to-agent work | A single procedure a human and agent walk *together*; auditability; portability | Multi-agent workflows with no human in the loop |
+| **CrewAI** | Multi-agent roles, fast for agent-to-agent work | A single procedure agents and humans walk *together*; auditability; portability | Multi-agent workflows with no human in the loop |
 | **AutoGen** | Conversational agent-to-agent dialog primitives | Equal-participant, audit-grade, harness-portable | Agent-to-agent research and conversational multi-agent |
 | **OpenAI Agents SDK / Swarm** | Simple, OpenAI-aligned, fast to start | Not vendor-coupled; intent-prose; equal-participant; audit | OpenAI shop, simple agent-handoff workflow |
 | **Mastra** | TypeScript-native, modern DX, workflow primitives | Portable data format; equal-participant | TS shop, single runtime, framework coupling is fine |
