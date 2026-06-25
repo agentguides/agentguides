@@ -8,6 +8,10 @@ runtime_dir := "../runtime"
 default:
     @just --list
 
+# Install git hooks (lefthook). Run once after cloning. Needs: brew install lefthook.
+init:
+    lefthook install
+
 # Sync JSON schemas from the runtime repo at a tag into docs/schemas/0.1/ (served at agentguides.io/schemas/0.1/).
 # Short-term: pulls from the local ../runtime git clone at TAG. Future (infra-dju): published wheel.
 sync-schemas TAG="v0.5.10":
