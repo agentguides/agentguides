@@ -1,0 +1,7 @@
+# Pinned local toolchain for the spec site: Ruby (Jekyll build/serve) + Node (the
+# generators in brand/ and tools/). `mise install` provisions them; mise auto-activates
+# these versions in this directory. System deps stay on brew: `librsvg` (rsvg-convert,
+# for `just brand`) and `lefthook` (`just init`).
+[tools]
+ruby = "3.3.11"
+node = "24.17.0"

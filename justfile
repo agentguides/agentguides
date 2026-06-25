@@ -12,6 +12,14 @@ default:
 init:
     lefthook install
 
+# Build the static site into docs/_site/.
+build:
+    cd docs && mise exec -- bundle exec jekyll build
+
+# Serve the site locally at http://localhost:4000 (live reload).
+serve:
+    cd docs && mise exec -- bundle exec jekyll serve
+
 # Sync JSON schemas from the runtime repo at a tag into docs/schemas/0.1/ (served at agentguides.io/schemas/0.1/).
 # Short-term: pulls from the local ../runtime git clone at TAG. Future (infra-dju): published wheel.
 sync-schemas TAG="v0.5.10":
@@ -29,8 +37,8 @@ sync-schemas TAG="v0.5.10":
 
 # Regenerate brand assets (OG card, favicons, logo) from brand/tokens.json into docs/assets/.
 brand:
-    node brand/render.mjs
+    mise exec -- node brand/render.mjs
 
 # Regenerate clean Markdown twins of each page (<url>/index.html.md) for LLM ingestion.
 md-pages:
-    node tools/gen_md_pages.mjs
+    mise exec -- node tools/gen_md_pages.mjs
