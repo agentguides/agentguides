@@ -22,3 +22,7 @@ sync-schemas TAG="v0.5.10":
     test "$count" = "8" || { echo "expected 8 schemas, got $count"; exit 1; }
     ! grep -L '"\$id": "https://agentguides.io/schemas/0.1/' docs/schemas/0.1/*.schema.json
     echo "synced $count schemas from {{runtime_dir}}@{{TAG}} -> docs/schemas/0.1/"
+
+# Regenerate brand assets (OG card, favicons, logo) from brand/tokens.json into docs/assets/.
+brand:
+    node brand/render.mjs
