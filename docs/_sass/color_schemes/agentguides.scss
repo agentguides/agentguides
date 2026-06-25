@@ -1,0 +1,20 @@
+// Agent Guides brand color scheme — mirrors brand/tokens.json
+// (base #0A0C12 / surface #121723 / border #272F40 / text #E8EEF6 / accent #3D5AFF).
+// Inherits just-the-docs' dark scheme, then overrides palette + type.
+@import "color_schemes/dark";
+
+$body-background-color: #0A0C12;
+$sidebar-color: #0A0C12;
+$border-color: #272F40;
+$body-heading-color: #E8EEF6;
+$body-text-color: #C7D0DC;
+$link-color: #3D5AFF;
+$btn-primary-color: #3D5AFF;
+$base-button-color: #121723;
+$code-background-color: #121723;
+$search-background-color: #121723;
+$table-background-color: #121723;
+$feedback-color: #121723;
+
+$body-font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+$mono-font-family: "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;

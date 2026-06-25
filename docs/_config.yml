@@ -19,7 +19,7 @@ defaults:
 
 remote_theme: just-the-docs/just-the-docs@v0.12.0
 
-color_scheme: dark
+color_scheme: agentguides
 search_enabled: true
 heading_anchors: true
 

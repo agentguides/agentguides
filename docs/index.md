@@ -2,18 +2,18 @@
 title: Home
 layout: home
 nav_order: 1
-description: A Skills-compatible specification for multi-step procedural workflows — runbooks, incident response, migrations — walked by an agent and a human together.
+description: A Skills-compatible specification for multi-step agent workflows — runbooks, incident response, migrations — walked by agents and humans together.
 ---
 
-[Quickstart](/quickstart/){: .btn .btn-purple .fs-5 .mb-4 .mb-md-0 .mr-2 }
+[Quickstart](/quickstart/){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
 [Specification](/specification/){: .btn .fs-5 .mb-4 .mb-md-0 .mr-2 }
 [![GitHub stars](https://img.shields.io/github/stars/agentguides/agentguides?style=social)](https://github.com/agentguides/agentguides)
 
-*Skills-compatible specification for self-improving multi-step procedural workflows.*
+*An open, Skills-compatible specification for multi-step agent workflows. Agents and humans walk each guide; recorded walks refine the guidance over time.*
 
 ## What are Agent Guides?
 
-Agent Guides are an open specification for *multi-step procedural workflows* — runbooks, incident response, migrations, onboarding — that an agent and a human walk through together.
+Agent Guides are an open specification for *multi-step procedural workflows* — runbooks, incident response, migrations, onboarding — that agents and humans walk through together.
 
 A Guide is a directory containing a `SKILL.md`, a `GUIDE.md`, and one markdown file per step. Every Guide is a valid Skill: Skills-only harnesses see a useful self-describing artifact, and Guide-aware harnesses additionally execute the workflow step by step.
 
@@ -27,7 +27,7 @@ my-guide/
     030-verify.md
 ```
 
-A single end-to-end execution is called a *walk* — the agent and the human stepping through the Guide together.
+A single end-to-end execution is called a *walk* — agents and humans stepping through the Guide together.
 
 ## Why Agent Guides?
 
@@ -41,7 +41,7 @@ Skills give an agent a self-describing unit of capability — knowledge, guideli
 
 A Guide-aware harness reads `GUIDE.md` to understand the goal, prerequisites, and end states, then walks the step DAG. Each step declares who performs the action (agent, human, or either) and how success is verified (script result, agent judgment, or human confirmation). Failures route through a recovery — pre-declared, discovered from the library, or improvised on the fly — and the walk resumes once it succeeds, or terminates honestly if it doesn't.
 
-The full record of the walk — agent reasoning, human reports, recoveries, rollbacks, and the final scored end state — persists as an append-only event log. That record is the audit trail today, and the substrate for keeping Guides current as the world they describe changes.
+The full record of the walk — agent reasoning, human reports, recoveries, rollbacks, and the final scored end state — persists as an append-only event log. That record is the audit trail today, and the substrate for improvement: recorded walks are what let a guide be reviewed, refined, and shared back to everyone who runs it, so the guidance keeps pace as the world it describes changes.
 
 ## Where can I use Agent Guides?
 
