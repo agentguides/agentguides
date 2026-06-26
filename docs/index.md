@@ -2,7 +2,7 @@
 title: Agent Guides
 layout: home
 nav_order: 1
-description: An open format for multi-step agent workflows. Skills-compatible on any harness; agents and humans walk each guide; recorded walks refine the guidance over time.
+description: Skills-compatible on any harness; agents and humans walk each guide; recorded walks refine the guidance over time.
 ---
 
 <!-- markdownlint-disable MD033 -->
